@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :comments
   mount_uploader :avatar, AvatarUploader
  	
+  validates :email, uniqueness: true
  	validates :username, presence: true
   validates :username, uniqueness: true
   validates :username, length: { minimum: 2 }
