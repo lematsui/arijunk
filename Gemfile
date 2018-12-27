@@ -17,6 +17,8 @@ gem 'uglifier'
 gem 'webpacker'
 gem 'devise'
 gem 'pundit'
+gem 'carrierwave', '~> 1.2.0'
+gem 'dotenv-rails', groups: [:development, :test]
 
 group :development do
   gem 'web-console', '>= 3.3.0'

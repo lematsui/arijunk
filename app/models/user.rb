@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :memes
   has_many :comments
+  mount_uploader :avatar, AvatarUploader
  	
  	validates :username, presence: true
   validates :username, uniqueness: true
