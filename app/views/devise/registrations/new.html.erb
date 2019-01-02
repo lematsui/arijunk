@@ -7,7 +7,8 @@
     <div class="form-inputs">
       <%= f.input :username,
                   autofocus: true, 
-                  required: true %>
+                  required: true,
+                  input_html: { autocomplete: "username" } %>
       <%= f.input :email,
                   required: true,
                   input_html: { autocomplete: "email" }%>
@@ -18,6 +19,9 @@
       <%= f.input :password_confirmation,
                   required: true,
                   input_html: { autocomplete: "new-password" } %>
+      <%=  f.input :avatar,
+                   required: true %>
+      <%= f.input :avatar_cache, as: :hidden %>
     </div>
 
     <div class="form-actions">
