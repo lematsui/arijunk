@@ -3,14 +3,15 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  attr_accessor :username
+
   has_many :memes
   has_many :comments
   mount_uploader :avatar, AvatarUploader
  	
   validates :email, uniqueness: true
- 	validates :username, presence: true
-  validates :username, uniqueness: true
+ 	# validates :username, presence: true
+  # validates :username, uniqueness: true
   validates :username, length: { minimum: 2 }
-  validates :bio, length: { minimum: 50, too_short: "IT NEEDS TO BE LONGER THAN THAT" }
-  validates :avatar, presence: true
+  # validates :avatar, presence: true
 end
