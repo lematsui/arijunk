@@ -18,7 +18,7 @@
   align-items: center;
   margin-right: 50px;
   p {
-    padding: 15px;
+    padding: 30px;
     margin: 0 0;
     font-weight: 600;
   }
@@ -29,4 +29,14 @@
     margin-left: 70px;
     font-family: 'Bungee', cursive;
   }
+}
+
+.avatar {
+  border-radius: 50%;
+}
+
+// Dropdown menu
+
+.avatar-dropdown {
+  text-align: left;
 }

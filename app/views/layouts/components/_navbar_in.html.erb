@@ -1,13 +1,19 @@
 <div class="navbar-arijunk">
 	<div class="logo">
-		<h3>Arijunk</h3>
+		<h3><%= link_to "Arijunk", root_path %></h3>
 	</div>
 	<div class="nav-btns">
 		<div class="text-btn">
 			<p>Upload a meme</p>
 		</div>
-		<div class="text-btn">
-			<p>My account</p>
+		<div class="dropdown">
+			<div class="dropdown-toggle" data-toggle="dropdown">
+				<%= cl_image_tag current_user.avatar, class: "avatar", height: 50, width: 50 %>
+			</div>
+			<ul class="dropdown-menu dropdown-menu-right" role="menu">
+		    <li href="#"><a href="#">My profile</a></li>
+		    <li href="#"><%= link_to "Log out", destroy_user_session_path, method: "delete" %></li>
+		  </div>
 		</div>
 	</div>
 </div>
