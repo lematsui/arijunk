@@ -1,0 +1,9 @@
+<div class="container">
+	<h3>Upload a meme!</h3>
+	<%= simple_form_for @meme do |f| %>
+		<%= f.input :photo %>
+  	<%= f.input :photo_cache, as: :hidden %>
+  	<%= f.input :title %>
+  	<%= f.input :caption %>
+	<% end %>
+</div>
