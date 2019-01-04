@@ -3,7 +3,6 @@
 .navbar-arijunk {
   display: flex;
   justify-content: space-between; 
-  border-bottom: 1px solid black;
   align-items: center;
   min-height: 75px;
   h3 {
@@ -11,6 +10,12 @@
   }
   padding: 0;
   width: 100%;
+  a {
+    text-decoration: none;
+    color: #3faf48;
+  }
+  background-color: white;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
 }
 
 .nav-btns {
@@ -33,6 +38,7 @@
 
 .avatar {
   border-radius: 50%;
+  cursor: pointer;
 }
 
 // Dropdown menu
