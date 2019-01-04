@@ -5,5 +5,8 @@
   	<%= f.input :photo_cache, as: :hidden %>
   	<%= f.input :title %>
   	<%= f.input :caption %>
+  	<%= f.input :tags, as: :select, collection: Tag.order(:name), label_method: :name, input_html: {           multiple: true} %>
+  	<%= f.submit %>
 	<% end %>
 </div>
+

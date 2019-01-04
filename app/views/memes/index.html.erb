@@ -1,3 +1,6 @@
 <div class="container">
-	<h1>MEMES TO COME!</h1>
+	<h1>MEMES</h1>
+	<% @memes.each do |meme| %>
+		<%= cl_image_tag meme.photo %>
+	<% end %>
 </div>
