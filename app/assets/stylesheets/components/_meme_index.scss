@@ -1,0 +1,21 @@
+.square-meme {
+	object-fit: cover;
+	height: 230px;
+	width: 230px;
+	padding: 10px;
+}
+
+.square-meme:hover {
+	opacity: 0.6;
+}
+
+.page-title {
+	font-size: 2em;
+	margin-bottom: 15px;
+}
+
+.meme-box {
+	a {
+		text-decoration: none;
+	}
+}

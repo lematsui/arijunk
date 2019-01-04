@@ -1,6 +1,14 @@
 <div class="container">
-	<h1>MEMES</h1>
-	<% @memes.each do |meme| %>
-		<%= cl_image_tag meme.photo %>
-	<% end %>
+	<h1 class="page-title text-center">FANTASTIC MEMES</h1>
+	<div class="meme-box">
+		<div class="row">
+			<div class="col-sm">
+				<% @memes.each do |meme| %>
+					<%= link_to meme_path(meme) do %>
+						<%= cl_image_tag meme.photo, class: "square-meme" %>
+					<% end %>
+				<% end %>
+			</div>
+		</div>
+	</div>
 </div>
