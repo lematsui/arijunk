@@ -1,0 +1,9 @@
+<div class="container">
+	<h3><%= @meme.title %></h3>
+	<%= cl_image_tag @meme.photo, class: "meme-max-width" %>
+	<p><%= @meme.caption %></p>
+	<p><% @meme.tags.each do |tag| %>
+		 <%= tag.name %>
+		 <% end %>
+	</p>
+</div>
