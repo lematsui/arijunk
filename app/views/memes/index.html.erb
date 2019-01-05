@@ -15,14 +15,11 @@
 		</div>
 	</div>
 	<div class="meme-box">
-		<div class="row">
-			<div class="col-sm">
-				<% @memes.each do |meme| %>
-					<%= link_to meme_path(meme) do %>
-						<%= cl_image_tag meme.photo, class: "square-meme" %>
-					<% end %>
-				<% end %>
-			</div>
+		<% @memes.each do |meme| %>
+			<%= link_to meme_path(meme) do %>
+				<%= cl_image_tag meme.photo, class: "square-meme" %>
+			<% end %>
+		<% end %>
 		</div>
 	</div>
 </div>
