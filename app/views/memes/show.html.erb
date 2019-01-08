@@ -1,9 +1,21 @@
 <div class="container">
-	<h3><%= @meme.title %></h3>
-	<%= cl_image_tag @meme.photo, class: "meme-max-width" %>
-	<p><%= @meme.caption %></p>
-	<p><% @meme.tags.each do |tag| %>
-		 <%= tag.name %>
+	<h3 class="meme-title text-center"><%= @meme.title %></h3>
+	<div class="meme-and-arrows">
+		<i class="fas fa-caret-left arrow"></i>
+		<%= cl_image_tag @meme.photo, class: "meme-max-width" %>
+		<i class="fas fa-caret-right arrow"></i>
+	</div>
+	<div class="posted-by">
+		<div class="flex user-info">
+			<p>Posted by&nbsp;</p><p class="user-text"><%= @meme.user.username %></p>
+			<%= cl_image_tag @meme.user.avatar, class: "user-pic" %>
+		</div>
+		<p><%= @meme.date.strftime("%e/%m/%Y %l:%M %p") %></p>
+	</div>
+	<hr>
+	<p>Caption: <%= @meme.caption %></p>
+	<p>Tags: <% @meme.tags.each do |tag| %>
+		 	<%= tag.name %>
 		 <% end %>
 	</p>
 </div>

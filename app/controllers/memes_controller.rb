@@ -2,7 +2,10 @@ class MemesController < ApplicationController
 	skip_before_action :authenticate_user!, only: [:index, :show]
 
 	def index
-		@memes = Meme.all
+		set_time
+		epic_dropdown
+		@time_to_take = Time.now - @time
+		@memes = Meme.where(date: @time_to_take..Time.now)
 	end
 
 	def show
@@ -39,5 +42,16 @@ class MemesController < ApplicationController
 		params[:meme][:tags][1..-1].each do |tag|
 			@tags << Tag.find(tag.to_i)
 		end
+	end
+
+	def set_time
+		@time = params[:time].to_i
+		@time = 24.hours if @time == 0
+	end
+
+	def epic_dropdown
+		@dropdown_options = [[24.hours, "24 HOURS"],
+												[1.week, "WEEK"], [1.month, "MONTH"],
+												[1.year, "YEAR"]]
 	end
 end
