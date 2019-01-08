@@ -37,6 +37,7 @@
 
 .range-choice {
 	background-color: #adf4b3;
+	min-width: 223.43px;
 	padding-top: 2px;
 	padding-bottom: 6px;
 	padding-left: 7px;
@@ -50,6 +51,9 @@
 		color: rgba(0, 0, 0, 0.75);
 		cursor: pointer;
 	}
+	a {
+		color: #02840e;
+	}
 }
 
 .meme-box {
@@ -57,6 +61,8 @@
 		text-decoration: none;
 	}
 	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
 }
 
 // DROPDOWN

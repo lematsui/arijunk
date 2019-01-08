@@ -1,3 +1,63 @@
 .meme-max-width {
-	max-width: 300px;
+	max-width: 530px;
+
+}
+
+.meme-and-arrows {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.meme-title {
+	font-family: 'Sarabun', sans-serif;
+	font-size: 3em;
+	margin-top: 18px;
+	margin-bottom: 25px;
+}
+
+.arrow {
+	font-size: 5.3em;
+	padding: 15px;
+	color: #3FB04F;
+	-webkit-text-stroke-width: 2.3px;
+  -webkit-text-stroke-color: #008521;
+}
+
+.arrow:hover {
+	color: #008521;
+  -webkit-text-stroke-color: #3FB04F;
+}
+
+.user-pic {
+	height: 26px;
+}
+
+.posted-by {
+	margin-top: 10px;
+	display: flex;
+	justify-content: center;
+	margin-bottom: 0;
+}
+
+.flex {
+	display: flex;
+}
+
+.user-info {
+	margin-right: 200px;
+}
+
+.user-text {
+	background-color: #109136;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+hr {
+	border-width: 2px;
+	border-color: #3FB04F;
+	width: 75%;
+	opacity: 0.6;
+	margin-top: 20px;
 }

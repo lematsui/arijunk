@@ -4,13 +4,26 @@
 		<p>in the past</p>
 		<div class="ari-dropdown">
 			<h1 class="range-choice">
-				24 HOURS
+					<% case @time %>
+					<% when 24.hours %>
+						<%= "24 HOURS" %>
+					<% when 1.week %>
+						<%= "WEEK" %>
+					<% when 1.month %>
+						<%= "MONTH" %>
+					<% when 1.year %>
+						<%= "YEAR" %>
+					<% end %>
 				<i class="fas fa-angle-right rotate"></i>
 			</h1>
 			<div class="aridrop-box">
-				<h1 class="range-choice aridrop">WEEK</h1>
-				<h1 class="range-choice aridrop">MONTH</h1>
-				<h1 class="range-choice aridrop">YEAR</h1>
+				<% @dropdown_options.each do |time| %>
+						<%= link_to memes_path(:time => time[0]) do %>
+							<% unless time[0] == @time %>
+								<h1 class="range-choice aridrop"><%= time[1] %></h1>
+							<% end %>
+						<% end %>
+				<% end %>
 			</div>
 		</div>
 	</div>
