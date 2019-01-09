@@ -31,21 +31,22 @@
 
 .user-pic {
 	height: 26px;
+	width: 26px;
+	object-fit: cover;
 }
 
 .posted-by {
 	margin-top: 10px;
 	display: flex;
-	justify-content: center;
+	justify-content: space-between;
 	margin-bottom: 0;
+	width: 530px;
+	margin-right: auto;
+	margin-left: auto;
 }
 
 .flex {
 	display: flex;
-}
-
-.user-info {
-	margin-right: 200px;
 }
 
 .user-text {
@@ -60,4 +61,33 @@ hr {
 	width: 75%;
 	opacity: 0.6;
 	margin-top: 20px;
+}
+
+.voting {
+	margin-right: auto;
+	margin-left: auto;
+	width: 530px;
+	display: flex;
+	justify-content: space-between;
+	font-size: 1.5em;
+	p {
+		margin: 0;
+	}
+	i {
+		margin-top: 6px;
+	}
+}
+
+.epic-win {
+	margin-right: 17px;
+	color: #5ACF34;
+	cursor: pointer;
+}
+
+.epic-fail {
+	color: #C7200A;
+	cursor: pointer;
+}
+
+.vote-count {
 }
