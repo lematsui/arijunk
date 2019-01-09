@@ -3,4 +3,6 @@ Rails.application.routes.draw do
   root to: 'memes#index'
   
 	resources :memes
+	post '/upvote', to: 'memes#upvote'
+	post '/downvote', to: 'memes#downvote'
 end

@@ -10,6 +10,7 @@ class MemesController < ApplicationController
 
 	def show
 		@meme = Meme.find(params[:id])
+		@votes = @meme.upvotes - @meme.downvotes
 	end
 
 	def new
@@ -29,6 +30,18 @@ class MemesController < ApplicationController
 		else
 			render :new
 		end
+	end
+
+	def upvote
+		meme = Meme.find(params[:meme][:id])
+		meme.upvotes += 1
+		meme.save
+	end
+
+	def downvote
+		meme = Meme.find(params[:meme][:id])
+		meme.downvotes += 1
+		meme.save
 	end
 
 	private
