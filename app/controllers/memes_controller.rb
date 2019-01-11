@@ -42,6 +42,15 @@ class MemesController < ApplicationController
     u.save
 	end
 
+  def remove_upvote
+    meme = Meme.find(params[:meme][:id])
+    meme.upvotes -= 1
+    meme.save
+    u = current_user
+    u.voted.delete([meme.id.to_s, "up"]) if u.voted.include?([meme.id.to_s, "up"])
+    u.save
+  end
+
 	def downvote
 		meme = Meme.find(params[:meme][:id])
 		meme.downvotes += 1
@@ -51,6 +60,15 @@ class MemesController < ApplicationController
     u.voted << [meme.id, "down"]
     u.save
 	end
+
+  def remove_downvote
+    meme = Meme.find(params[:meme][:id])
+    meme.downvotes -= 1
+    meme.save
+    u = current_user
+    u.voted.delete([meme.id.to_s, "down"]) if u.voted.include?([meme.id.to_s, "down"])
+    u.save
+  end
 
 	private
 
