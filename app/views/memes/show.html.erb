@@ -14,17 +14,31 @@
 	</div>
 	<div class="voting">
 		<div class="voting-btns flex">
-			<div class="flex epic-win">
-				<p >EPIC WIN</p>
-				<i class="fas fa-hand-point-up"></i>
-			</div>
-			<div class="flex epic-fail">
-				<p>EPIC FAIL</p>
-				<i class="fas fa-hand-point-down"></i>
-			</div>
+      <% if current_user.voted.include?([@meme.id.to_s, "up"]) %>
+        <div class="flex epic-win-voted">
+          <p >EPIC WIN</p>
+          <i class="fas fa-hand-point-up"></i>
+        </div>
+      <% elsif %>
+  			<div class="flex epic-win">
+  				<p >EPIC WIN</p>
+  				<i class="fas fa-hand-point-up"></i>
+  			</div>
+      <% end %>
+      <% if current_user.voted.include?([@meme.id.to_s, "down"]) %>
+  			<div class="flex epic-fail-voted">
+  				<p>EPIC FAIL</p>
+  				<i class="fas fa-hand-point-down"></i>
+  			</div>
+      <% elsif %>
+        <div class="flex epic-fail">
+          <p>EPIC FAIL</p>
+          <i class="fas fa-hand-point-down"></i>
+        </div>
+      <% end %>
 		</div>
 		<div class="vote-count">
-			<p><%= @votes %> total votes</p>	
+			<p><%= @votes %> total votes</p>
 		</div>
 	</div>
 	<hr>

@@ -22,6 +22,7 @@
 	color: #3FB04F;
 	-webkit-text-stroke-width: 2.3px;
   -webkit-text-stroke-color: #008521;
+  cursor: pointer;
 }
 
 .arrow:hover {
@@ -84,10 +85,25 @@ hr {
 	cursor: pointer;
 }
 
+.epic-win-voted {
+  margin-right: 17px;
+  color: #2D5702;
+}
+
 .epic-fail {
 	color: #C7200A;
 	cursor: pointer;
 }
 
-.vote-count {
+.epic-fail-voted {
+  color: #630202;
+}
+
+
+.epic-win:hover {
+  color: #2D5702;
+}
+
+.epic-fail:hover {
+  color: #630202;
 }
