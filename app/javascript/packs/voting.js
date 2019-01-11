@@ -1,14 +1,13 @@
-let upvote = document.querySelector(".epic-win")
-let upvoteDone = document.querySelector(".epic-win-voted")
-let downvote = document.querySelector(".epic-fail")
-let downvoteDone = document.querySelector(".epic-fail")
+const upvote = document.querySelector(".upvote");
+const downvote = document.querySelector(".downvote");
+const voteNumber = document.getElementById("vote-number");
+const meme = document.querySelector(".meme-title");
 
-function checkForUpvote() {
-  let upvote = document.querySelector(".epic-win")
-  if (upvote) {
-    upvote.addEventListener("click", (event) => {
-      console.log("adding upvote")
-    	const memeId = document.querySelector(".meme-title").id
+if (upvote) {
+  upvote.addEventListener("click", (event) => {
+    if (upvote.classList.contains("epic-win")) {
+      let memeId = meme.id;
+      console.log("adding upvote");
     	mydata = `meme[id]=${memeId}`
       Rails.ajax({
         type: "POST",
@@ -17,44 +16,91 @@ function checkForUpvote() {
       });
       upvote.classList.remove("epic-win");
       upvote.classList.add("epic-win-voted");
-      checkForUpvoteDone();
-    });
-  };
-};
-
-function checkForUpvoteDone() {
-  let upvoteDone = document.querySelector(".epic-win-voted")
-  if (upvoteDone) {
-    upvoteDone.addEventListener("click", (event) => {
-      console.log("removing upvote")
-      const memeId = document.querySelector(".meme-title").id
+      oneVoteAllowed();
+      addOne();
+    } else if (upvote.classList.contains("epic-win-voted")) {
+      const memeId = meme.id;
+      console.log("removing upvote");
       mydata = `meme[id]=${memeId}`
       Rails.ajax({
         type: "POST",
         url: "/remove-upvote",
         data: mydata
       });
-      upvoteDone.classList.remove("epic-win-voted");
-      upvoteDone.classList.add("epic-win");
-      checkForUpvote();
-    });
-  };
+      upvote.classList.remove("epic-win-voted");
+      upvote.classList.add("epic-win");
+      oneVoteAllowed();
+      removeOne();
+    };
+  });
 };
 
 if (downvote) {
   downvote.addEventListener("click", (event) => {
-  	const memeId = document.querySelector(".meme-title").id
-  	mydata = `meme[id]=${memeId}`
-    Rails.ajax({
-      type: "POST",
-      url: "/downvote",
-      data: mydata
-    });
+    if (downvote.classList.contains("epic-fail")) {
+      const memeId = meme.id;
+      console.log("adding downvote");
+    	mydata = `meme[id]=${memeId}`
+      Rails.ajax({
+        type: "POST",
+        url: "/downvote",
+        data: mydata
+      });
+      downvote.classList.remove("epic-fail");
+      downvote.classList.add("epic-fail-voted");
+      oneVoteAllowed();
+      removeOne();
+    } else if (downvote.classList.contains("epic-fail-voted")) {
+      const memeId = meme.id;
+      console.log("removing downvote");
+      mydata = `meme[id]=${memeId}`
+      Rails.ajax({
+        type: "POST",
+        url: "/remove-downvote",
+        data: mydata
+      });
+      downvote.classList.remove("epic-fail-voted");
+      downvote.classList.add("epic-fail");
+      oneVoteAllowed();
+      addOne();
+    }
   });
 };
 
-checkForUpvote();
-checkForUpvoteDone();
 
+function oneVoteAllowed() {
+  if (upvote.classList.contains("epic-win-voted")
+      && downvote.classList.contains("epic-fail")) {
+    downvote.classList.remove("epic-fail");
+    downvote.classList.add("epic-fail-disabled");
+  };
+  if (upvote.classList.contains("epic-win")
+      && downvote.classList.contains("epic-fail-disabled")) {
+    downvote.classList.add("epic-fail");
+    downvote.classList.remove("epic-fail-disabled");
+  };
+  if (downvote.classList.contains("epic-fail-voted")
+      && upvote.classList.contains("epic-win")) {
+    upvote.classList.remove("epic-win");
+    upvote.classList.add("epic-win-disabled");
+  };
+  if (downvote.classList.contains("epic-fail")
+      && upvote.classList.contains("epic-win-disabled")) {
+    upvote.classList.add("epic-win");
+    upvote.classList.remove("epic-win-disabled");
+  }
+};
 
+function addOne () {
+  let newNumber = parseInt(voteNumber.innerText, 10) + 1;
+  voteNumber.innerText = newNumber;
+}
 
+function removeOne () {
+  let newNumber = parseInt(voteNumber.innerText, 10) - 1;
+  voteNumber.innerText = newNumber;
+}
+
+if (meme) {
+  oneVoteAllowed();
+};

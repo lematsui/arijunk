@@ -79,6 +79,10 @@ hr {
 	}
 }
 
+.vote-count {
+  display: flex;
+}
+
 .epic-win {
 	margin-right: 17px;
 	color: #5ACF34;
@@ -108,4 +112,13 @@ hr {
 
 .epic-fail:hover {
   color: #630202;
+}
+
+.epic-win-disabled {
+  margin-right: 17px;
+  color: #C9C9C9;
+}
+
+.epic-fail-disabled {
+  color: #C9C9C9;
 }
