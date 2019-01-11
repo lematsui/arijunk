@@ -14,24 +14,36 @@
 	</div>
 	<div class="voting">
 		<div class="voting-btns flex">
-      <% if current_user.voted.include?([@meme.id.to_s, "up"]) %>
-        <div class="upvote flex epic-win-voted">
+      <% if user_signed_in? %>
+        <% if current_user.voted.include?([@meme.id.to_s, "up"]) %>
+          <div class="upvote flex epic-win-voted">
+            <p >EPIC WIN</p>
+            <i class="fas fa-hand-point-up"></i>
+          </div>
+        <% elsif %>
+    			<div class="upvote flex epic-win">
+    				<p >EPIC WIN</p>
+    				<i class="fas fa-hand-point-up"></i>
+    			</div>
+        <% end %>
+        <% if current_user.voted.include?([@meme.id.to_s, "down"]) %>
+    			<div class="downvote flex epic-fail-voted">
+    				<p>EPIC FAIL</p>
+    				<i class="fas fa-hand-point-down"></i>
+    			</div>
+        <% elsif %>
+          <div class="downvote flex epic-fail">
+            <p>EPIC FAIL</p>
+            <i class="fas fa-hand-point-down"></i>
+          </div>
+        <% end %>
+      <% end %>
+      <% unless user_signed_in? %>
+        <div class="upvote flex epic-win-disabled">
           <p >EPIC WIN</p>
           <i class="fas fa-hand-point-up"></i>
         </div>
-      <% elsif %>
-  			<div class="upvote flex epic-win">
-  				<p >EPIC WIN</p>
-  				<i class="fas fa-hand-point-up"></i>
-  			</div>
-      <% end %>
-      <% if current_user.voted.include?([@meme.id.to_s, "down"]) %>
-  			<div class="downvote flex epic-fail-voted">
-  				<p>EPIC FAIL</p>
-  				<i class="fas fa-hand-point-down"></i>
-  			</div>
-      <% elsif %>
-        <div class="downvote flex epic-fail">
+        <div class="downvote flex epic-fail-disabled">
           <p>EPIC FAIL</p>
           <i class="fas fa-hand-point-down"></i>
         </div>
