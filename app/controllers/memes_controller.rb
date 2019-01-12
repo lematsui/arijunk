@@ -6,6 +6,7 @@ class MemesController < ApplicationController
 		epic_dropdown
 		@time_to_take = Time.now - @time
 		@memes = Meme.where(date: @time_to_take..Time.now).order(total_votes: :desc)
+    this = "broken"
 	end
 
 	def show
