@@ -5,7 +5,8 @@ class MemesController < ApplicationController
 		set_time
 		epic_dropdown
 		@time_to_take = Time.now - @time
-		@memes = Meme.where(date: @time_to_take..Time.now)
+		@memes = Meme.where(date: @time_to_take..Time.now).order(total_votes: :desc)
+    this = "broken"
 	end
 
 	def show
@@ -23,6 +24,7 @@ class MemesController < ApplicationController
 		@meme.date = Time.now
 		@meme.upvotes = 0
 		@meme.downvotes = 0
+    @meme.total_votes = 0
 		extract_tags
 		@meme.tags = @tags
 		if @meme.save
@@ -35,7 +37,8 @@ class MemesController < ApplicationController
 	def upvote
 		meme = Meme.find(params[:meme][:id])
 		meme.upvotes += 1
-		meme.save
+    meme.total_votes = meme.upvotes - meme.downvotes
+    meme.save
     u = current_user
     u.voted.delete([meme.id.to_s, "down"]) if u.voted.include?([meme.id.to_s, "down"])
     u.voted << [meme.id, "up"]
@@ -45,6 +48,7 @@ class MemesController < ApplicationController
   def remove_upvote
     meme = Meme.find(params[:meme][:id])
     meme.upvotes -= 1
+    meme.total_votes = meme.upvotes - meme.downvotes
     meme.save
     u = current_user
     u.voted.delete([meme.id.to_s, "up"]) if u.voted.include?([meme.id.to_s, "up"])
@@ -54,6 +58,7 @@ class MemesController < ApplicationController
 	def downvote
 		meme = Meme.find(params[:meme][:id])
 		meme.downvotes += 1
+    meme.total_votes = meme.upvotes - meme.downvotes
 		meme.save
     u = current_user
     u.voted.delete([meme.id.to_s, "up"]) if u.voted.include?([meme.id.to_s, "up"])
@@ -64,6 +69,7 @@ class MemesController < ApplicationController
   def remove_downvote
     meme = Meme.find(params[:meme][:id])
     meme.downvotes -= 1
+    meme.total_votes = meme.upvotes - meme.downvotes
     meme.save
     u = current_user
     u.voted.delete([meme.id.to_s, "down"]) if u.voted.include?([meme.id.to_s, "down"])
