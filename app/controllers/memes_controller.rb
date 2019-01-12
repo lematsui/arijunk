@@ -23,7 +23,6 @@ class MemesController < ApplicationController
 		@meme.date = Time.now
 		@meme.upvotes = 0
 		@meme.downvotes = 0
-    @meme.total_votes = 0
 		extract_tags
 		@meme.tags = @tags
 		if @meme.save
